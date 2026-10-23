@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey Fasiha, You're Awesome 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Starry background overlay (comfort mode) -->
+  <div id="stars" class="stars hidden"></div>
+
+  <header>
+    <h1 id="main-title">Hey Fasiha, you're awesome 💖</h1>
+    <p id="subtitle">A little happy place made just for you</p>
+    <div class="header-controls">
+      <button id="comfort-toggle" class="small-button">✨ Comfort Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Mood slider -->
+    <section class="card mood-card">
+      <h2>How are you feeling right now, Fasiha?</h2>
+      <div class="slider-group">
+        <span class="mood-label sad">😔 Sad</span>
+        <input type="range" id="mood-slider" min="0" max="100" value="50">
+        <span class="mood-label happy">😊 Happy</span>
+      </div>
+      <div id="mood-message" class="mood-message">You're wonderful exactly as you are.</div>
+    </section>
+
+    <!-- Hug button -->
+    <section class="card hug-card">
+      <h2>Need a hug, Fasiha?</h2>
+      <button id="hug-btn" class="big-button">🤗 Give me a hug</button>
+      <div id="hug-response" class="hidden"></div>
+    </section>
+
+    <!-- Surprise / Joke button -->
+    <section class="card surprise-card">
+      <h2>Surprise me!</h2>
+      <button id="surprise-btn" class="big-button">✨ Tell me something funny/sweet</button>
+      <div id="surprise-text" class="surprise-text hidden"></div>
+    </section>
+
+    <!-- Breathing exercise -->
+    <section class="card breathing-card">
+      <h2>🌬️ Breathe with me</h2>
+      <p class="breathing-instruction" id="breathing-text">Ready when you are</p>
+      <div class="breathing-circle" id="breathing-circle"></div>
+      <button id="breathing-btn" class="big-button">Start Breathing</button>
+    </section>
+
+    <!-- Gratitude journal -->
+    <section class="card gratitude-card">
+      <h2>🙏 Gratitude for Fasiha</h2>
+      <p class="gratitude-hint">What's one good thing today?</p>
+      <div class="gratitude-input-group">
+        <input type="text" id="gratitude-input" placeholder="Type something nice...">
+        <button id="gratitude-btn" class="big-button">Add</button>
+      </div>
+      <div id="gratitude-list" class="gratitude-list"></div>
+      <button id="clear-gratitude" class="small-button">Clear list</button>
+    </section>
+
+    <!-- Affirmations -->
+    <section class="card affirmation-card">
+      <h2>💖 Affirmations for Fasiha</h2>
+      <button id="affirmation-btn" class="big-button">Show me an affirmation</button>
+      <div id="affirmation-text" class="affirmation-text hidden"></div>
+    </section>
+
+    <!-- Self-care suggestions -->
+    <section class="card selfcare-card">
+      <h2>🛁 Gentle self-care ideas</h2>
+      <button id="selfcare-btn" class="big-button">Give me a self-care idea</button>
+      <div id="selfcare-text" class="selfcare-text hidden"></div>
+    </section>
+
+    <!-- Write it out journal -->
+    <section class="card journal-card">
+      <h2>📝 Write it out, Fasiha</h2>
+      <p class="journal-hint">Whatever you're feeling is okay.</p>
+      <textarea id="journal-input" placeholder="Write anything here..."></textarea>
+      <div class="journal-buttons">
+        <button id="journal-hug-btn" class="big-button">I'm listening</button>
+        <button id="journal-clear-btn" class="small-button">Clear</button>
+      </div>
+      <div id="journal-response" class="journal-response hidden"></div>
+    </section>
+
+    <!-- Pet the Cat section -->
+    <section class="card cat-card">
+      <h2>🐱 Pet the Cat</h2>
+      <p class="cat-hint">Click or drag the cat to pet it!</p>
+      <div class="cat-container" id="cat-container">
+        <div id="cat" class="cat">
+          <div class="cat-ear left"></div>
+          <div class="cat-ear right"></div>
+          <div class="cat-head">
+            <div class="cat-eye left"></div>
+            <div class="cat-eye right"></div>
+            <div class="cat-nose"></div>
+            <div class="cat-mouth"></div>
+            <div class="cat-whiskers left"></div>
+            <div class="cat-whiskers right"></div>
+          </div>
+          <div class="cat-body">
+            <div class="cat-paw left"></div>
+            <div class="cat-paw right"></div>
+            <div class="cat-tail"></div>
+          </div>
+          <div id="cat-purr" class="cat-purr hidden">😻 Purr...</div>
+        </div>
+      </div>
+      <div id="cat-message" class="cat-message hidden"></div>
+    </section>
+
+    <!-- Mini game: pop the sad clouds -->
+    <section class="card game-card">
+      <h2>🎮 Pop the Sad Clouds</h2>
+      <p class="game-instruction">Click the grey clouds to chase them away!</p>
+      <div id="game-score" class="game-score">Clouds popped: <span id="score-val">0</span></div>
+      <div id="game-area" class="game-area"></div>
+      <button id="start-game" class="big-button">Start Game</button>
+      <div id="game-win" class="hidden game-win">🎉 All clear! The sky is sunny again!</div>
+    </section>
+
+    <!-- Quiz section -->
+    <section class="card quiz-card">
+      <h2>🧠 Fun Quiz for Fasiha</h2>
+      <div id="quiz-container" class="quiz-container hidden">
+        <div id="question-text" class="question-text"></div>
+        <div id="options" class="options"></div>
+        <div id="quiz-feedback" class="quiz-feedback"></div>
+        <div id="quiz-progress" class="quiz-progress">Question 1 of 5</div>
+        <button id="next-btn" class="big-button hidden">Next Question</button>
+      </div>
+      <div id="quiz-start" class="quiz-start">
+        <p id="quiz-intro"></p>
+        <button id="start-quiz-btn" class="big-button">Start Quiz</button>
+      </div>
+      <div id="quiz-result" class="quiz-result hidden"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Made with lots of ❤️ for Fasiha. You matter. 💖</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
